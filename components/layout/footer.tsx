@@ -57,17 +57,10 @@ export function Footer() {
           <div className="grid grid-cols-1 gap-x-16 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Column 1: Brand */}
           <div className="space-y-4">
-            {siteConfig.logoUrl ? (
-              <Image
-                src={siteConfig.logoUrl}
-                alt=""
-                width={64}
-                height={64}
-                className="h-14 w-14 object-contain"
-              />
-            ) : (
-              <span className="text-2xl font-bold text-primary">{siteConfig.name.slice(0, 2)}</span>
-            )}
+            <div
+              className="h-14 w-14 rounded-lg bg-neutral-500"
+              aria-hidden
+            />
             {establishedYear && (
               <p className="text-xs font-medium uppercase tracking-wider text-neutral-400">
                 ESTD. {establishedYear}

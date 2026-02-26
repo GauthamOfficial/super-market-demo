@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Container } from "@/components/layout/container";
 import { CartTrigger } from "@/features/cart/CartTrigger";
 import { HeaderNav } from "@/components/layout/HeaderNav";
@@ -13,33 +12,13 @@ export function Header() {
           href="/"
           className="flex shrink-0 items-center gap-3 font-semibold text-white transition-opacity hover:opacity-90"
         >
-          {siteConfig.logoUrl ? (
-            <>
-              <Image
-                src={siteConfig.logoUrl}
-                alt=""
-                width={44}
-                height={44}
-                className="h-10 w-10 object-contain sm:h-11 sm:w-11"
-                aria-hidden
-              />
-              <span className="font-brand text-base font-normal tracking-tight text-white sm:text-lg" style={{ letterSpacing: "0.03em" }}>
-                {siteConfig.name}
-              </span>
-            </>
-          ) : (
-            <>
-              <span
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/20 text-xs font-medium text-white sm:h-11 sm:w-11"
-                aria-hidden
-              >
-                Logo
-              </span>
-              <span className="font-brand text-base font-normal tracking-tight text-white sm:text-lg" style={{ letterSpacing: "0.03em" }}>
-                {siteConfig.name}
-              </span>
-            </>
-          )}
+          <span
+            className="flex h-10 w-10 shrink-0 rounded-lg bg-neutral-400 sm:h-11 sm:w-11"
+            aria-hidden
+          />
+          <span className="font-brand text-base font-normal tracking-tight text-white sm:text-lg" style={{ letterSpacing: "0.03em" }}>
+            {siteConfig.name}
+          </span>
         </Link>
         <nav
           className="flex flex-1 items-center justify-center gap-1 text-sm"

@@ -1,9 +1,6 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import Image from "next/image";
-
-const HERO_IMAGES = ["/sp-1.jpg", "/sp-2.jpg", "/sp-3.jpg", "/sp-4.jpg", "/sp-5.jpg", "/sp-6.jpg", "/sp-7.jpg"];
 
 /* Left and right corners only — inset from edges so images stay fully inside the hero frame */
 const FLOATING_BOXES: { left: string; top: string; width: number; height: number; speed: number; z: number }[] = [
@@ -81,11 +78,10 @@ export function AboutHero() {
         >
           {FLOATING_BOXES.map((item, i) => {
             const t = transforms[i] ?? { y: 0, rotate: 0 };
-            const src = HERO_IMAGES[i] ?? HERO_IMAGES[0];
             return (
               <div
                 key={i}
-                className="absolute rounded-xl overflow-hidden border-2 border-white/20 shadow-xl"
+                className="absolute rounded-xl overflow-hidden border-2 border-white/20 shadow-xl bg-neutral-500"
                 style={{
                   left: item.left,
                   top: item.top,
@@ -96,15 +92,8 @@ export function AboutHero() {
                   willChange: "transform",
                   backfaceVisibility: "hidden",
                 }}
-              >
-                <Image
-                  src={src}
-                  alt=""
-                  fill
-                  className="object-cover"
-                  sizes={`${item.width}px`}
-                />
-              </div>
+                aria-hidden
+              />
             );
           })}
         </div>

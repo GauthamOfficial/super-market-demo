@@ -17,8 +17,8 @@ export const siteConfig = {
   /** Short tagline or description for meta and footer */
   tagline: "Your supermarket — get more of life with FN Family Mart",
 
-  /** Logo image URL. If set, header shows logo instead of text name. */
-  logoUrl: "/fn-logo.png",
+  /** Logo image URL. If set, header shows logo instead of text name. Currently using grey placeholder. */
+  logoUrl: null as string | null,
 
   /** Favicon URL (optional). Otherwise browser uses default. */
   faviconUrl: null as string | null,
@@ -26,7 +26,7 @@ export const siteConfig = {
   /** Contact shown in footer, contact page, and used as fallback for WhatsApp on order success */
   contact: {
     email: "hello.diffindo@gmail.com",
-    phone: "+94 704462999",
+    phone: "+94 70 446 2999",
     address: "Kandy Road, Kurnegala, Sri Lanka",
   },
 

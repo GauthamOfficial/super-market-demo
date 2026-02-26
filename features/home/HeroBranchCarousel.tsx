@@ -1,10 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useRef, useCallback } from "react";
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
-import { getBranchImageUrl } from "@/lib/branch-image";
 
 /** Minimal branch shape for hero carousel (id + name from site config). */
 export type HeroBranch = { id: string; name: string };
@@ -73,15 +71,7 @@ export function HeroBranchCarousel({ branches }: { branches: HeroBranch[] }) {
                 className="hero-store-card relative flex h-full w-full min-w-full flex-[0_0_100%] shrink-0 flex-col rounded-xl [scroll-snap-align:start] sm:w-72 sm:min-w-0 sm:flex-none sm:rounded-2xl sm:block"
               >
                 {/* Mobile: flex-1 fill. Desktop: 6:5 ratio card */}
-                <div className="relative flex-1 min-h-0 w-full overflow-hidden rounded-xl bg-muted sm:aspect-[6/5] sm:flex-none sm:w-full sm:rounded-2xl">
-                  <Image
-                    src={getBranchImageUrl(branch)}
-                    alt={branch.name}
-                    fill
-                    className="block object-cover object-center"
-                    sizes="(max-width: 640px) 100vw, 288px"
-                  />
-                </div>
+                <div className="relative flex-1 min-h-0 w-full overflow-hidden rounded-xl bg-neutral-400 sm:aspect-[6/5] sm:flex-none sm:w-full sm:rounded-2xl" aria-hidden />
                 <div className="absolute left-2 top-2 z-10 flex items-center gap-1 rounded-lg bg-black/60 px-2 py-1 text-xs font-medium text-white backdrop-blur-sm sm:left-3 sm:top-3 sm:gap-1.5 sm:px-2.5 sm:py-1.5">
                   <MapPin className="h-3 w-3 shrink-0 sm:h-3.5 sm:w-3.5" />
                   <span className="truncate max-w-[140px] sm:max-w-none">{branch.name}</span>

@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import { siteConfig } from "@/config/site";
 
 const TABS = [
   { id: "who", label: "Who we are" },
@@ -13,22 +11,21 @@ const TABS = [
 const CONTENT = {
   who: {
     title: "Who We Are",
-    body: "FN Family Mart is a trusted supermarket network committed to bringing you the best in quality and convenience. We prioritize customer satisfaction by offering a diverse range of superior products and dependable services to meet your daily needs.",
+    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
   },
   vision: {
     title: "Our Vision",
-    body: "Our vision is to become the best destination for the customer to fulfill their needs in one place with good quality and affordability.",
+    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras fermentum odio eu feugiat pretium nibh ipsum. Nunc consequat interdum varius sit amet mattis vulputate enim.",
   },
   mission: {
     title: "Our Mission",
-    body: "Our mission is to provide high-quality products and services to our customers while upholding the values of integrity, excellence, and sustainability. We strive to exceed our customers' expectations through exceptional customer service, a commitment to innovation, and a dedication to social and environmental responsibility. We value our employees and provide a supportive and inclusive work environment that fosters personal and professional growth. We are committed to being a responsible corporate citizen and contributing to the well-being of the communities we serve.",
+    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magna fermentum iaculis eu non diam phasellus. Eget nunc scelerisque viverra mauris in aliquam sem fringilla. Nibh tellus molestie nunc non blandit massa enim nec dui.",
   },
 } as const;
 
 export function AboutSlider() {
   const [active, setActive] = useState<(typeof TABS)[number]["id"]>("who");
   const content = CONTENT[active];
-  const logoUrl = siteConfig.logoUrl ?? "/fn-logo.png";
 
   return (
     <section className="full-bleed py-10 sm:py-16 bg-muted/40 border-y border-border relative overflow-hidden">
@@ -61,18 +58,9 @@ export function AboutSlider() {
 
         {/* Content panel — text on top, logo behind */}
         <div className="relative mt-6 sm:mt-8 min-h-[180px] sm:min-h-[200px]">
-          {/* Logo — behind text, centered in content area */}
+          {/* Logo placeholder — behind text, centered in content area */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden>
-            <div className="relative w-full max-w-[160px] sm:max-w-[200px] aspect-square opacity-[0.07]">
-              <Image
-                src={logoUrl}
-                alt=""
-                fill
-                className="object-contain"
-                sizes="200px"
-                priority={false}
-              />
-            </div>
+            <div className="w-full max-w-[160px] sm:max-w-[200px] aspect-square rounded-lg bg-neutral-300 opacity-30" />
           </div>
           <div
             id={`panel-${active}`}

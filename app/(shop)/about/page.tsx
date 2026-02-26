@@ -1,7 +1,6 @@
 import { Container } from "@/components/layout/container";
 import { siteConfig } from "@/config/site";
 import { Quote } from "lucide-react";
-import Image from "next/image";
 import type { Metadata } from "next";
 import { AboutSlider } from "./AboutSlider";
 import { AboutHero } from "./AboutHero";
@@ -34,42 +33,29 @@ export default function AboutPage() {
           <AnimateOnScroll>
           <div className="mb-12 sm:mb-20">
             <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start">
-              <div className="shrink-0 w-full max-w-xs mx-auto md:mx-0 md:w-56 aspect-[3/4] relative rounded-2xl shadow-[0_0_50px_12px_rgba(34,197,94,0.22)] animate-float-subtle">
-                <div className="absolute inset-0 rounded-2xl overflow-hidden bg-neutral-200">
-                  <Image
-                    src="/chairman.jpg"
-                    alt="Mr. Fazmin Mohomed, Chairman, FN Group (Pvt) Ltd."
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 224px"
-                  />
-                </div>
-              </div>
+              <div className="shrink-0 w-full max-w-xs mx-auto md:mx-0 md:w-56 aspect-[3/4] relative rounded-2xl overflow-hidden shadow-[0_0_50px_12px_rgba(34,197,94,0.22)] animate-float-subtle bg-neutral-400" aria-hidden />
               <div className="flex-1 min-w-0 w-full">
                 <div className="flex items-center gap-2 text-primary mb-2">
                   <Quote className="h-4 w-4 sm:h-5 sm:w-5 opacity-70 shrink-0" />
                   <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider">Chairman&apos;s Note</span>
                 </div>
                 <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-4 break-words">
-                  Dear Valued Customers,
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
                 <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-4 break-words">
-                  It is my great pleasure to welcome you to FN Group (Pvt) Ltd, a company that is dedicated to excellence and committed to delivering the very best in products and services. As the Chairman of the FN Group, I am honored to lead this organization and to work with a team of dedicated professionals who share my passion for excellence.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
                 </p>
                 <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-4 break-words">
-                  Our company is built on a foundation of trust, integrity, and innovation. We have established ourselves as a leading provider of high-quality products and services in a number of key industries. From our super market network distribution company, to our housing projects, luxury wedding car rental service, and fashion store, we are committed to meeting the diverse needs of our customers.
-                </p>
-                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-4 break-words">
-                  Thank you for considering FN Group for your needs. We are honored to have the opportunity to serve you and look forward to building a lasting relationship with you.
+                  Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras fermentum odio eu feugiat pretium nibh ipsum. Nunc consequat interdum varius sit amet mattis vulputate enim.
                 </p>
                 <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-2 break-words">
                   Sincerely,
                 </p>
                 <p className="font-semibold text-foreground text-sm sm:text-base">
-                  Mr. Fazmin Mohomed
+                  John Smith
                 </p>
                 <p className="text-xs sm:text-sm text-muted-foreground">
-                  Chairman, FN Group (Pvt) Ltd.
+                  Chairman, Lorem Corp.
                 </p>
               </div>
             </div>
@@ -80,45 +66,29 @@ export default function AboutPage() {
           <AnimateOnScroll delay={100}>
           <div>
             <div className="flex flex-col md:flex-row-reverse gap-6 md:gap-12 items-start">
-              <div className="shrink-0 w-full max-w-xs mx-auto md:mx-0 md:w-56 aspect-[3/4] relative rounded-2xl shadow-[0_0_50px_12px_rgba(34,197,94,0.22)] animate-float-subtle">
-                <div className="absolute inset-0 rounded-2xl overflow-hidden bg-neutral-200">
-                  <Image
-                    src="/director.jpg"
-                    alt="Mrs. Fathima Nuzha, Director, FN Group (Pvt) Ltd."
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 224px"
-                  />
-                </div>
-              </div>
+              <div className="shrink-0 w-full max-w-xs mx-auto md:mx-0 md:w-56 aspect-[3/4] relative rounded-2xl overflow-hidden shadow-[0_0_50px_12px_rgba(34,197,94,0.22)] animate-float-subtle bg-neutral-400" aria-hidden />
               <div className="flex-1 min-w-0 w-full">
                 <div className="flex items-center gap-2 text-primary mb-2">
                   <Quote className="h-4 w-4 sm:h-5 sm:w-5 opacity-70 shrink-0" />
                   <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider">Director&apos;s Note</span>
                 </div>
                 <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-4 break-words">
-                  Welcome to FN Group (Pvt) Ltd,
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
                 </p>
                 <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-4 break-words">
-                  As the Director of FN Group, I extend a warm welcome to you. It gives me immense pleasure to introduce you to our diverse range of products and services.
+                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </p>
                 <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-4 break-words">
-                  At FN Group, we are committed to excellence in everything we do. Our dedication to quality, integrity, and innovation is the driving force behind our success. Whether it&apos;s through our supermarket network, distribution channels, housing projects, luxury wedding car rentals, or fashion store, we strive to exceed your expectations.
-                </p>
-                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-4 break-words">
-                  Our team of professionals shares a common goal: to provide you with the best possible experience. We understand the importance of building lasting relationships with our customers, and we are honored to have the opportunity to serve you.
-                </p>
-                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-4 break-words">
-                  Thank you for considering FN Group for your needs. We look forward to the opportunity to exceed your expectations and to build a long-lasting partnership with you.
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
                 </p>
                 <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-2 break-words">
                   Warm regards,
                 </p>
                 <p className="font-semibold text-foreground text-sm sm:text-base">
-                  Mrs. Fathima Nuzha
+                  Jane Doe
                 </p>
                 <p className="text-xs sm:text-sm text-muted-foreground">
-                  Director, FN Group (Pvt) Ltd.
+                  Director, Lorem Corp.
                 </p>
               </div>
             </div>
