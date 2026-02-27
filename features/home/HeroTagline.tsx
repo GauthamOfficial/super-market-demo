@@ -10,7 +10,7 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-const FULL_TEXT = "Your Place... Your choice...";
+const FULL_TEXT = "Visit once feel the difference";
 const TYPING_MS = 80;
 const PAUSE_AFTER_MS = 2500;
 const RESTART_DELAY_MS = 800;

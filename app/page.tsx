@@ -32,7 +32,7 @@ export default async function HomePage() {
         {/* Black base */}
         <div className="absolute inset-0 bg-black" aria-hidden />
         <div className="hero-overlay" aria-hidden />
-        {/* Green gradient from bottom */}
+        {/* Brand gradient from bottom */}
         <div
           className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent pointer-events-none"
           aria-hidden
@@ -42,19 +42,19 @@ export default async function HomePage() {
         <div className="absolute top-16 right-2 left-2 z-20 flex flex-row flex-nowrap items-center justify-center gap-1.5 sm:left-auto sm:top-6 sm:right-6 sm:justify-end sm:gap-3">
           <Link
             href="/products"
-            className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-black/70 px-2 py-1 text-[11px] font-medium text-white backdrop-blur-md transition-all duration-200 shadow-[0_0_6px_2px_rgba(0,165,79,0.4)] hover:bg-black/90 hover:shadow-[0_0_12px_4px_rgba(0,165,79,0.5)] hover:scale-[1.02] sm:px-4 sm:py-2 sm:text-sm sm:shadow-[0_0_8px_3px_rgba(0,165,79,0.35)] sm:hover:shadow-[0_0_14px_5px_rgba(0,165,79,0.45)]"
+            className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-black/70 px-2 py-1 text-[11px] font-medium text-white backdrop-blur-md transition-all duration-200 shadow-[0_0_6px_2px_rgba(250,18,18,0.4)] hover:bg-black/90 hover:shadow-[0_0_12px_4px_rgba(250,18,18,0.5)] hover:scale-[1.02] sm:px-4 sm:py-2 sm:text-sm sm:shadow-[0_0_8px_3px_rgba(250,18,18,0.35)] sm:hover:shadow-[0_0_14px_5px_rgba(250,18,18,0.45)]"
           >
             Products
           </Link>
           <Link
             href="/find-store"
-            className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-black/70 px-2 py-1 text-[11px] font-medium text-white backdrop-blur-md transition-all duration-200 shadow-[0_0_6px_2px_rgba(0,165,79,0.4)] hover:bg-black/90 hover:shadow-[0_0_12px_4px_rgba(0,165,79,0.5)] hover:scale-[1.02] sm:px-4 sm:py-2 sm:text-sm sm:shadow-[0_0_8px_3px_rgba(0,165,79,0.35)] sm:hover:shadow-[0_0_14px_5px_rgba(0,165,79,0.45)]"
+            className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-black/70 px-2 py-1 text-[11px] font-medium text-white backdrop-blur-md transition-all duration-200 shadow-[0_0_6px_2px_rgba(250,18,18,0.4)] hover:bg-black/90 hover:shadow-[0_0_12px_4px_rgba(250,18,18,0.5)] hover:scale-[1.02] sm:px-4 sm:py-2 sm:text-sm sm:shadow-[0_0_8px_3px_rgba(250,18,18,0.35)] sm:hover:shadow-[0_0_14px_5px_rgba(250,18,18,0.45)]"
           >
             Find a store
           </Link>
           <Link
             href="/products"
-            className="inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-full bg-black/70 px-2 py-1 text-[11px] font-medium text-white backdrop-blur-md transition-all duration-200 shadow-[0_0_6px_2px_rgba(0,165,79,0.4)] hover:bg-black/90 hover:shadow-[0_0_12px_4px_rgba(0,165,79,0.5)] hover:scale-[1.02] sm:gap-1.5 sm:px-4 sm:py-2 sm:text-sm sm:shadow-[0_0_8px_3px_rgba(0,165,79,0.35)] sm:hover:shadow-[0_0_14px_5px_rgba(0,165,79,0.45)]"
+            className="inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-full bg-black/70 px-2 py-1 text-[11px] font-medium text-white backdrop-blur-md transition-all duration-200 shadow-[0_0_6px_2px_rgba(250,18,18,0.4)] hover:bg-black/90 hover:shadow-[0_0_12px_4px_rgba(250,18,18,0.5)] hover:scale-[1.02] sm:gap-1.5 sm:px-4 sm:py-2 sm:text-sm sm:shadow-[0_0_8px_3px_rgba(250,18,18,0.35)] sm:hover:shadow-[0_0_14px_5px_rgba(250,18,18,0.45)]"
           >
             Explore more
             <ChevronRight className="h-3 w-3 shrink-0 sm:h-4 sm:w-4" />
@@ -129,21 +129,18 @@ export default async function HomePage() {
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-6 gap-3 sm:gap-4 max-w-2xl sm:max-w-none mx-auto">
             {[
-              { label: "Premium Staples", src: "/fn/fn-1.png" },
-              { label: "Value Staples", src: "/fn/fn-2.png" },
-              { label: "Cleaning", src: "/fn/fn-3.png" },
-              { label: "Fun Foods", src: "/fn/fn-4.png" },
-              { label: "Ready to Eat", src: "/fn/fn-5.png" },
-              { label: "Daily Needs", src: "/fn/fn-6.png" },
-            ].map(({ label, src }) => (
-              <div key={label} className="relative aspect-[5/6] rounded-xl overflow-hidden border border-border bg-muted">
-                <Image
-                  src={src}
-                  alt={label}
-                  fill
-                  className="object-cover w-full h-full"
-                  sizes="(max-width: 640px) 50vw, 280px"
-                />
+              "Premium Staples",
+              "Value Staples",
+              "Cleaning",
+              "Fun Foods",
+              "Ready to Eat",
+              "Daily Needs",
+            ].map((label) => (
+              <div
+                key={label}
+                className="relative aspect-[5/6] rounded-xl overflow-hidden border border-border bg-neutral-200 flex items-center justify-center text-xs sm:text-sm font-medium text-neutral-600"
+              >
+                {label}
               </div>
             ))}
           </div>
@@ -155,39 +152,16 @@ export default async function HomePage() {
       <AnimateOnScroll delay={100}>
       <section className="full-bleed py-16 bg-white">
         <Container>
-          <div className="w-full relative h-96 rounded-xl overflow-hidden">
-            <Image
-              src="/customer.jpg"
-              alt="Happy customers"
-              fill
-              className="object-cover object-[38%_28%] sm:object-[50%_28%]"
-              sizes="100vw"
-              priority={false}
-            />
-            {/* Black gradient from bottom-left at 45° — stronger on mobile */}
-            <div
-              className="absolute inset-0 pointer-events-none rounded-xl sm:hidden"
-              style={{
-                background: "linear-gradient(45deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.58) 45%, transparent 75%)",
-              }}
-              aria-hidden
-            />
-            <div
-              className="absolute inset-0 pointer-events-none rounded-xl hidden sm:block"
-              style={{
-                background: "linear-gradient(45deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.4) 45%, transparent 75%)",
-              }}
-              aria-hidden
-            />
-            <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 md:p-10 flex flex-col justify-end">
-              <p className="font-playfair text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white drop-shadow-lg italic">
+          <div className="w-full relative h-96 rounded-xl overflow-hidden bg-neutral-200 flex items-center justify-center">
+            <div className="text-center px-6">
+              <p className="font-playfair text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-neutral-800 italic">
                 1000+
               </p>
-              <p className="font-playfair text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-white drop-shadow-lg mt-1 italic">
+              <p className="font-playfair text-xl sm:text-2xl md:text-3xl font-semibold tracking-tight text-neutral-800 mt-1 italic">
                 Happy Customers
               </p>
-              <p className="mt-3 text-white/95 text-base sm:text-lg max-w-md font-medium drop-shadow">
-                join us on this journey built on trust and satisfaction
+              <p className="mt-3 text-neutral-700 text-base sm:text-lg max-w-md font-medium mx-auto">
+                Image placeholder — update later with your own photography.
               </p>
             </div>
           </div>

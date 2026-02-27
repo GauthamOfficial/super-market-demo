@@ -12,10 +12,10 @@
 
 export const siteConfig = {
   /** Store name shown in header, footer, meta titles, and across the site */
-  name: "FN FAMILY MART",
+  name: "Muli Super",
 
   /** Short tagline or description for meta and footer */
-  tagline: "Your supermarket — get more of life with FN Family Mart",
+  tagline: "Your supermarket — visit once feel the difference",
 
   /** Logo image URL. If set, header shows logo instead of text name. Currently using grey placeholder. */
   logoUrl: null as string | null,
@@ -42,7 +42,7 @@ export const siteConfig = {
   establishedYear: null as string | null,
 
   /** Footer: short company description under logo (optional; falls back to tagline) */
-  footerDescription: "FN Family Mart is a supermarket network committed to excellence and customer satisfaction, offering convenience and quality products.",
+  footerDescription: "Muli Super is a supermarket network committed to excellence and customer satisfaction, offering convenience and quality products.",
 
   /** Footer: QR code image URL (e.g. WhatsApp QR). Optional. */
   footerQrCodeUrl: null as string | null,
@@ -65,11 +65,11 @@ export const siteConfig = {
 
   /**
    * Theme colors (HSL for CSS variables).
-   * FN FAMILY MART: Primary White, Brand #00a54f (green) & #e4e30d (yellow), Black.
+   * Muli Super: Primary White, Brand #fa1212 (red) & #e4e30d (yellow), Black.
    * Format: "H S% L%" e.g. "222 47% 11%".
    */
   colors: {
-    primary: "149 100% 32%" as string | null,       // #00a54f brand green
+    primary: "0 96% 53%" as string | null,         // #fa1212 brand red
     primaryForeground: "0 0% 100%" as string | null,
     accent: "60 91% 47%" as string | null,          // #e4e30d brand yellow
     accentForeground: "0 0% 9%" as string | null,

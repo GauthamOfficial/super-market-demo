@@ -155,9 +155,9 @@ function OrderSuccessLoading() {
     <div className="w-full max-w-md mx-auto space-y-6 px-2 sm:px-0">
       <div className="space-y-4">
         <p className="text-center text-sm text-muted-foreground">Loading your order…</p>
-        <div className="h-1.5 w-full overflow-hidden rounded-full bg-green-100 dark:bg-green-950/50">
+        <div className="h-1.5 w-full overflow-hidden rounded-full bg-primary/10 dark:bg-primary/30">
           <div
-            className="h-full w-1/3 min-w-[120px] rounded-full bg-green-500 dark:bg-green-500 animate-order-loading-bar"
+            className="h-full w-1/3 min-w-[120px] rounded-full bg-primary dark:bg-primary animate-order-loading-bar"
             aria-hidden
           />
         </div>

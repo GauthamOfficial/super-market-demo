@@ -131,7 +131,7 @@ export function CheckoutForm({ deliveryAreas }: CheckoutFormProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="grid w-full gap-4 sm:grid-cols-[1fr,300px] sm:gap-5 max-w-4xl mx-auto items-start">
       {/* Left: Single form card */}
-      <Card className="max-w-2xl bg-gradient-to-t from-green-100 to-white dark:from-green-950/30 dark:to-card">
+      <Card className="max-w-2xl bg-gradient-to-t from-primary/10 to-white dark:from-primary/20 dark:to-card">
         <CardContent className="p-3 sm:p-5 space-y-0">
           {/* Contact information — single row on sm+; tighter on mobile */}
           <div className="space-y-2 sm:space-y-3 pb-2 sm:pb-4">
