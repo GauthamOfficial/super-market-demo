@@ -696,6 +696,93 @@ async function getVariantIdsForProducts(
 }
 
 /**
+ * Fetch orders for a Clerk user (account order history). Call only with the current user's id from auth().
+ */
+export async function getOrdersByClerkUserId(
+  clerkUserId: string,
+  options?: { limit?: number; offset?: number }
+): Promise<Result<Order[]>> {
+  try {
+    const supabase = createAdminClient();
+    const limit = Math.min(50, Math.max(1, options?.limit ?? 20));
+    const offset = Math.max(0, options?.offset ?? 0);
+    const { data, error } = await supabase
+      .from("orders")
+      .select("*")
+      .eq("clerk_user_id", clerkUserId)
+      .order("created_at", { ascending: false })
+      .range(offset, offset + limit - 1);
+    if (error) return err(error.message);
+    return ok((data ?? []) as Order[]);
+  } catch (e) {
+    return err(
+      e instanceof Error ? e.message : "Failed to fetch orders"
+    );
+  }
+}
+
+/**
+ * Fetch a single order by id only if it belongs to the given Clerk user (for account order detail).
+ */
+export async function getOrderByIdForClerkUser(
+  orderId: string,
+  clerkUserId: string
+): Promise<
+  Result<{
+    order: Order;
+    items: (OrderItem & { variant?: ProductVariant })[];
+    branch: Branch | null;
+  }>
+> {
+  try {
+    const supabase = createAdminClient();
+    const { data: order, error: orderError } = await supabase
+      .from("orders")
+      .select("*")
+      .eq("id", orderId)
+      .eq("clerk_user_id", clerkUserId)
+      .single();
+    if (orderError || !order) {
+      return err(orderError?.message ?? "Order not found");
+    }
+    const { data: items, error: itemsError } = await supabase
+      .from("order_items")
+      .select("*")
+      .eq("order_id", orderId)
+      .order("created_at");
+    if (itemsError) return err(itemsError.message);
+    const orderItems = (items ?? []) as OrderItem[];
+    const variantIds = [...new Set(orderItems.map((i) => i.product_variant_id))];
+    let variants: ProductVariant[] = [];
+    if (variantIds.length > 0) {
+      const { data: v } = await supabase
+        .from("product_variants")
+        .select("*")
+        .in("id", variantIds);
+      variants = (v ?? []) as ProductVariant[];
+    }
+    const variantMap = new Map(variants.map((v) => [v.id, v]));
+    const { data: branch } = await supabase
+      .from("branches")
+      .select("*")
+      .eq("id", order.branch_id)
+      .single();
+    return ok({
+      order: order as Order,
+      items: orderItems.map((item) => ({
+        ...item,
+        variant: variantMap.get(item.product_variant_id),
+      })),
+      branch: branch as Branch | null,
+    });
+  } catch (e) {
+    return err(
+      e instanceof Error ? e.message : "Failed to fetch order"
+    );
+  }
+}
+
+/**
  * Fetch order by order_number (e.g. ORD-xxx). Use for tracking with phone verification.
  * Uses admin client so guest orders (user_id null) can be found; caller must verify phone.
  */

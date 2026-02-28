@@ -17,29 +17,20 @@ const LOGIN_PATH = ADMIN_LOGIN_PATH;
  * - Refreshes the session so cookies stay valid.
  * - If the request is for /admin/* (except /admin/login) and the user is not signed in, redirects to LOGIN_PATH.
  *
- * @example Root middleware (middleware.ts at project root)
- * ```ts
- * import { type NextRequest } from "next/server";
- * import { updateSession } from "@/lib/supabase/middleware";
- *
- * export async function middleware(request: NextRequest) {
- *   return await updateSession(request);
- * }
- *
- * export const config = {
- *   matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)"],
- * };
- * ```
+ * @param existingResponse - If provided (e.g. from Clerk middleware), Supabase cookies are set on this response instead of creating a new one.
  */
-export async function updateSession(request: NextRequest) {
+export async function updateSession(
+  request: NextRequest,
+  existingResponse?: NextResponse
+): Promise<NextResponse> {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!supabaseUrl || !supabaseAnonKey) {
-    return NextResponse.next({ request });
+    return existingResponse ?? NextResponse.next({ request });
   }
 
-  let response = NextResponse.next({ request });
+  const response = existingResponse ?? NextResponse.next({ request });
 
   const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {
     cookies: {

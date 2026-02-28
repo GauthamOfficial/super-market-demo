@@ -1,5 +1,6 @@
 "use server";
 
+import { auth } from "@clerk/nextjs/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import type { CartItem } from "@/features/cart/cartUtils";
 
@@ -43,6 +44,8 @@ export async function placeOrder(
     ? form.deliveryFee
     : 0;
 
+  const { userId: clerkUserId } = await auth();
+
   const insertPayload: Record<string, unknown> = {
     branch_id: branchId,
     order_number: orderNumber,
@@ -54,6 +57,7 @@ export async function placeOrder(
     delivery_fee: deliveryFee,
     payment_method: form.paymentMethod,
     user_id: null,
+    clerk_user_id: clerkUserId ?? null,
   };
 
   const { data: order, error: orderError } = await supabase

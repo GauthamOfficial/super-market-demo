@@ -74,6 +74,28 @@ footer {
   border-top-width: 0 !important;
 }
 
+/* Hide "Secured by Clerk" and "Development mode" */
+/* 1) Layout option hides "Development mode"; 2) CSS hides footer (Clerk may portal it, so target by content) */
+.auth-gate-modal .cl-footer,
+.auth-gate-modal [class*="cl-footer"],
+.auth-gate-modal [class*="footer"],
+.auth-gate-modal [data-clerk-footer],
+.cl-footer,
+[class*="cl-footer"],
+.cl-formButtonReset[data-localization-key*="footer"],
+[data-clerk-footer],
+.cl-card [class*="footer"],
+.cl-root [class*="footer"],
+.cl-cardFooter,
+.cl-internal-footer {
+  display: none !important;
+}
+/* Hide the footer block that contains the "Secured by Clerk" link (only direct child of card to avoid hiding form) */
+.cl-card > div:has(a[href*="clerk.com"]),
+.cl-root > div:has(a[href*="clerk.com"]) {
+  display: none !important;
+}
+
 /* Prevent layout shift when Radix dropdowns/select open (react-remove-scroll) */
 body[data-scroll-locked] {
   --removed-body-scroll-bar-size: 0 !important;

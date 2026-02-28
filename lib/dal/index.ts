@@ -28,6 +28,8 @@ export {
   getSearchProductsWithDetails,
   getProductSuggestions,
   getOrderByOrderNumber,
+  getOrdersByClerkUserId,
+  getOrderByIdForClerkUser,
   type GetDeliveryAreasOptions,
   type ProductWithPriceAndStock,
   type ProductWithPriceStockAndVariant,

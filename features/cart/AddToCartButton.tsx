@@ -1,6 +1,7 @@
 "use client";
 
 import { ShoppingCart } from "lucide-react";
+import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import { useCartStore } from "@/features/cart/store";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
@@ -15,7 +16,7 @@ interface AddToCartButtonProps {
   disabled?: boolean;
 }
 
-export function AddToCartButton({
+function AddToCartButtonInner({
   branchId,
   variantId,
   productName,
@@ -56,5 +57,28 @@ export function AddToCartButton({
     >
       Add to cart
     </Button>
+  );
+}
+
+export function AddToCartButton(props: AddToCartButtonProps) {
+  return (
+    <>
+      <SignedOut>
+        <SignInButton mode="modal">
+          <Button
+            type="button"
+            variant="default"
+            size="sm"
+            disabled={props.disabled}
+            className="rounded-md"
+          >
+            Add to cart
+          </Button>
+        </SignInButton>
+      </SignedOut>
+      <SignedIn>
+        <AddToCartButtonInner {...props} />
+      </SignedIn>
+    </>
   );
 }

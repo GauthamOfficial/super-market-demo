@@ -95,6 +95,8 @@ export interface Order {
   /** e.g. cod, bank_transfer */
   payment_method?: string | null;
   user_id: UUID | null;
+  /** Clerk user id when order placed while signed in; null for guest. */
+  clerk_user_id?: string | null;
   created_at: Timestamp;
   updated_at: Timestamp;
 }

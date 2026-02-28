@@ -11,6 +11,7 @@
     "reseed-products": "tsx scripts/reseed-products.ts"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.39.0",
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-label": "^2.0.2",
@@ -25,27 +26,27 @@
     "clsx": "^2.1.0",
     "lucide-react": "^0.294.0",
     "next": "^15.1.0",
+    "nodemailer": "^8.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.71.2",
-    "nodemailer": "^8.0.1",
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^4.3.6",
     "zustand": "^5.0.11"
   },
   "devDependencies": {
-    "dotenv": "^16.4.5",
-    "tsx": "^4.19.2",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.16",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.18",
+    "dotenv": "^16.4.5",
     "eslint": "^9",
     "eslint-config-next": "^15.1.0",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
+    "tsx": "^4.19.2",
     "typescript": "^5"
   },
   "overrides": {

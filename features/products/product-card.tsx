@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { ViewProductButton } from "@/components/auth/ViewProductButton";
 import { formatPrice } from "@/lib/utils";
 import type { Product } from "@/types";
 
@@ -45,9 +45,13 @@ export function ProductCard({ product, compact, actionLabel = "Add to cart" }: P
         <span className={`font-semibold shrink-0 ${compact ? "text-xs sm:text-sm" : "text-base sm:text-lg"}`}>
           {formatPrice(product.base_price)}
         </span>
-        <Button asChild variant="default" size="sm" className={compact ? "h-7 w-full min-w-0 shrink-0 rounded-md text-xs px-2 sm:h-6 sm:w-auto sm:min-w-0 sm:px-2 sm:text-xs" : "w-full shrink-0 rounded-md sm:h-7 sm:w-auto sm:min-w-0 sm:px-2 sm:text-xs"}>
-          <Link href={`/product/${product.slug}`} className="truncate">{actionLabel}</Link>
-        </Button>
+        <ViewProductButton
+          slug={product.slug}
+          label={actionLabel}
+          className={compact ? "h-7 w-full min-w-0 shrink-0 rounded-md text-xs px-2 sm:h-6 sm:w-auto sm:min-w-0 sm:px-2 sm:text-xs" : "w-full shrink-0 rounded-md sm:h-7 sm:w-auto sm:min-w-0 sm:px-2 sm:text-xs"}
+          size="sm"
+          variant="default"
+        />
       </CardFooter>
     </Card>
   );

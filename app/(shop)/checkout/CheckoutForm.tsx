@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useUser } from "@clerk/nextjs";
 import { User, Truck, CreditCard, ShoppingBag } from "lucide-react";
 import { useCartStore } from "@/features/cart/store";
 import { getSubtotal } from "@/features/cart/cartUtils";
@@ -56,6 +57,7 @@ interface CheckoutFormProps {
 
 export function CheckoutForm({ deliveryAreas }: CheckoutFormProps) {
   const router = useRouter();
+  const { user } = useUser();
   const items = useCartStore((s) => s.items);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const didNavigateToSuccess = useRef(false);
@@ -76,6 +78,15 @@ export function CheckoutForm({ deliveryAreas }: CheckoutFormProps) {
 
   const deliveryMethod = watch("deliveryMethod");
   const deliveryAreaId = watch("deliveryAreaId");
+
+  // Pre-fill name and email from Clerk when signed in
+  useEffect(() => {
+    if (!user) return;
+    const fullName = [user.firstName, user.lastName].filter(Boolean).join(" ") || undefined;
+    const email = user.primaryEmailAddress?.emailAddress;
+    if (fullName) setValue("name", fullName);
+    if (email) setValue("email", email);
+  }, [user, setValue]);
 
   // When switching to delivery and there is exactly one area, auto-select it
   useEffect(() => {

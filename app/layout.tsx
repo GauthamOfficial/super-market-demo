@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
 import { fontBrand } from "@/lib/fonts";
 import "./globals.css";
 import { HeaderWithMobileNav } from "@/components/layout/HeaderWithMobileNav";
@@ -9,6 +10,7 @@ import { PageContentTransition } from "@/components/layout/PageContentTransition
 import { AnimateOnScroll } from "@/components/layout/AnimateOnScroll";
 import { Toaster } from "@/components/ui/toaster";
 import { CartDrawer } from "@/features/cart/CartDrawer";
+import { AuthGateModal } from "@/components/auth/AuthGateModal";
 import { siteConfig } from "@/config/site";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -45,20 +47,27 @@ export default function RootLayout({
   ].filter(Boolean);
 
   return (
-    <html lang="en">
-      <head>
-        {siteConfig.faviconUrl && (
-          <link rel="icon" href={siteConfig.faviconUrl} />
-        )}
-        {colorVars.length > 0 && (
-          <style
-            dangerouslySetInnerHTML={{
-              __html: `:root { ${colorVars.join("; ")} }`,
-            }}
-          />
-        )}
-      </head>
-      <body className={`${inter.className} ${playfair.variable} ${fontBrand.variable} flex min-h-screen flex-col`}>
+    <ClerkProvider
+      appearance={{
+        layout: {
+          unsafe_disableDevelopmentModeWarnings: true,
+        },
+      }}
+    >
+      <html lang="en">
+        <head>
+          {siteConfig.faviconUrl && (
+            <link rel="icon" href={siteConfig.faviconUrl} />
+          )}
+          {colorVars.length > 0 && (
+            <style
+              dangerouslySetInnerHTML={{
+                __html: `:root { ${colorVars.join("; ")} }`,
+              }}
+            />
+          )}
+        </head>
+        <body className={`${inter.className} ${playfair.variable} ${fontBrand.variable} flex min-h-screen flex-col`}>
         <a
           href="#main-content"
           className="absolute left-[-9999px] top-4 z-[100] rounded-md bg-primary px-4 py-2 text-primary-foreground focus:left-4 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
@@ -75,8 +84,10 @@ export default function RootLayout({
         </main>
         <Footer />
         <CartDrawer />
+        <AuthGateModal />
         <Toaster />
-      </body>
-    </html>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
