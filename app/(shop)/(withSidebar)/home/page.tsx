@@ -1,10 +1,11 @@
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import { getSelectedBranchId } from "@/lib/branch-cookie";
+import { getOrSetBranchId } from "@/lib/branch-cookie";
 import { getBranches, getPopularProductsWithDetails } from "@/lib/dal";
 import { HomeProductCard } from "@/features/products/HomeProductCard";
 import { HomeSearchBar } from "@/features/home/HomeSearchBar";
+import { siteConfig } from "@/config/site";
 
 export const metadata = {
   title: "Home",
@@ -13,7 +14,7 @@ export const metadata = {
 
 export default async function HomePage() {
   const cookieStore = await cookies();
-  const branchId = getSelectedBranchId(cookieStore);
+  const branchId = await getOrSetBranchId(cookieStore);
 
   if (!branchId) {
     redirect("/select-branch");
@@ -24,9 +25,10 @@ export default async function HomePage() {
     getPopularProductsWithDetails(branchId, 8),
   ]);
 
-  const branchName = branchesResult.ok
-    ? branchesResult.data.find((b) => b.id === branchId)?.name ?? null
-    : null;
+  const branchName =
+    siteConfig.branchesMode === "multi" && branchesResult.ok
+      ? branchesResult.data.find((b) => b.id === branchId)?.name ?? null
+      : null;
   const popularItems = popularResult.ok ? popularResult.data : [];
 
   return (
@@ -47,7 +49,7 @@ export default async function HomePage() {
         <p className="text-muted-foreground">
           {branchName
             ? "Browse categories and popular products below."
-            : "Select a branch to see products."}
+            : "Browse categories and popular products below."}
         </p>
         <div className="flex items-center gap-3">
           <Suspense fallback={<div className="h-10 w-full max-w-md rounded-md border bg-muted animate-pulse" />}>

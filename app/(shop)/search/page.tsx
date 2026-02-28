@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { cookies } from "next/headers";
-import { getSelectedBranchId } from "@/lib/branch-cookie";
+import { getOrSetBranchId } from "@/lib/branch-cookie";
 import { getSearchProductsWithDetails } from "@/lib/dal";
 import { CategoryProductGrid } from "@/features/category/CategoryProductGrid";
 import { SearchInput } from "@/features/search/SearchInput";
@@ -18,7 +18,7 @@ export const metadata = {
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const cookieStore = await cookies();
-  const branchId = getSelectedBranchId(cookieStore);
+  const branchId = await getOrSetBranchId(cookieStore);
 
   if (!branchId) {
     redirect("/select-branch");

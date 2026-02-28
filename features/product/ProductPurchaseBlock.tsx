@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { formatPrice } from "@/lib/utils";
 import { useCartStore } from "@/features/cart/store";
+import { toast } from "@/hooks/use-toast";
 import type { Product, ProductVariant } from "@/types/db";
 import { Minus, Plus, ShoppingCart } from "lucide-react";
 
@@ -74,6 +75,18 @@ export function ProductPurchaseBlock({
       unitPrice: selectedVariant.price,
       imageUrl: product.image_url,
       qty: clampedQty,
+    });
+    toast({
+      title: (
+        <span className="flex items-center gap-2">
+          <ShoppingCart className="h-4 w-4 shrink-0 text-primary" />
+          Added to cart
+        </span>
+      ),
+      description:
+        clampedQty > 1
+          ? `${product.name} × ${clampedQty}`
+          : `${product.name}${selectedVariant.name ? ` (${selectedVariant.name})` : ""}`,
     });
   };
 

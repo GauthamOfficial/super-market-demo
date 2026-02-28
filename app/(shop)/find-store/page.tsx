@@ -24,13 +24,15 @@ export default async function FindStorePage() {
 
   const branches = result.data;
 
-  // Single-branch mode: auto-select the only branch and go to home
-  if (siteConfig.branchesMode === "single" && branches.length === 1) {
-    setSelectedBranchId(cookieStore, branches[0].id);
+  // Single-shop mode: no store picker; redirect to home
+  if (siteConfig.branchesMode === "single") {
+    if (branches.length === 1) {
+      setSelectedBranchId(cookieStore, branches[0].id);
+    }
     redirect("/home");
   }
 
-  // Always show the branch picker on Find a store (no redirect when branch already selected)
+  // Multi-branch: show the branch picker
   return (
     <div className="space-y-6 sm:space-y-8">
       <section className="text-center space-y-2 px-2">

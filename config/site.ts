@@ -27,7 +27,7 @@ export const siteConfig = {
   contact: {
     email: "hello.diffindo@gmail.com",
     phone: "+94 70 446 2999",
-    address: "Kandy Road, Kurnegala, Sri Lanka",
+    address: "Kandy Road, Kurunegala, Sri Lanka",
   },
 
   /** Social media URLs (footer icons). Set when you have the links. */
@@ -52,16 +52,16 @@ export const siteConfig = {
 
   /**
    * Branches mode:
+   * - "single": one shop; no branch picker or "Find a store". Branch is auto-selected.
    * - "multi": user picks a branch (select-branch), can change branch on home.
-   * - "single": only one branch; branch picker is skipped and "Change branch" is hidden.
    */
-  branchesMode: "multi" as "single" | "multi",
+  branchesMode: "single" as "single" | "multi",
 
   /**
-   * Branch names and order for the landing page (hero carousel + Find a store).
-   * Must match image filenames in public: theliyagonna.jpg, mallawapitiya.jpg, etc.
+   * Branch names for the landing page (hero carousel + Find a store). Only used when branchesMode === "multi".
+   * For single shop this is ignored.
    */
-  branchNames: ["Theliyagonna", "Mallawapitiya", "Kurunegala", "Paragahadeniya"] as const,
+  branchNames: ["Store"] as const,
 
   /**
    * Theme colors (HSL for CSS variables).

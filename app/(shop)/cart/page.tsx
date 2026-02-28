@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CartPageContent } from "@/features/cart/CartPageContent";
-import { getSelectedBranchId } from "@/lib/branch-cookie";
+import { getOrSetBranchId } from "@/lib/branch-cookie";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 export default async function CartPage() {
   const cookieStore = await cookies();
-  const branchId = getSelectedBranchId(cookieStore);
+  const branchId = await getOrSetBranchId(cookieStore);
 
   if (!branchId) {
     redirect("/select-branch");

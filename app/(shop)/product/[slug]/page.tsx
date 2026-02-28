@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { redirect, notFound } from "next/navigation";
 import { cookies } from "next/headers";
-import { getSelectedBranchId } from "@/lib/branch-cookie";
+import { getOrSetBranchId } from "@/lib/branch-cookie";
 import { getProductBySlug, getCategories } from "@/lib/dal";
 import { Button } from "@/components/ui/button";
 import { ProductPurchaseBlock } from "@/features/product/ProductPurchaseBlock";
@@ -13,7 +13,7 @@ interface ProductPageProps {
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const cookieStore = await cookies();
-  const branchId = getSelectedBranchId(cookieStore);
+  const branchId = await getOrSetBranchId(cookieStore);
 
   if (!branchId) {
     redirect("/select-branch");

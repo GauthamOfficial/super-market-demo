@@ -1,10 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 import { getProducts } from "@/features/products/actions";
-import { getBranches } from "@/lib/dal";
 import { ProductCard } from "@/features/products/product-card";
-import { HeroBranchCarousel } from "@/features/home/HeroBranchCarousel";
 import { HeroTagline } from "@/features/home/HeroTagline";
 import { EnjoyFreshestSection } from "@/features/home/EnjoyFreshestSection";
 import { HeroProductSearch } from "@/features/search/HeroProductSearch";
@@ -13,17 +10,9 @@ import { Container } from "@/components/layout/container";
 import { AnimateOnScroll } from "@/components/layout/AnimateOnScroll";
 import { siteConfig } from "@/config/site";
 
-/** Landing page always shows these 4 branches (names + images) from site config. */
-const displayBranches = siteConfig.branchNames.map((name, i) => ({ id: `branch-${i}`, name }));
-
 export default async function HomePage() {
-  const [productsResult, branchesResult] = await Promise.all([
-    getProducts(),
-    getBranches(),
-  ]);
-  const products = productsResult;
+  const products = await getProducts();
   const featured = products.slice(0, 6);
-  const branches = branchesResult.ok ? branchesResult.data : [];
 
   return (
     <div className="min-w-0">
@@ -38,19 +27,13 @@ export default async function HomePage() {
           aria-hidden
         />
 
-        {/* Top: 3 small buttons, same style (black + subtle green glow), moved down from navbar */}
+        {/* Top: hero action buttons */}
         <div className="absolute top-16 right-2 left-2 z-20 flex flex-row flex-nowrap items-center justify-center gap-1.5 sm:left-auto sm:top-6 sm:right-6 sm:justify-end sm:gap-3">
           <Link
             href="/products"
             className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-black/70 px-2 py-1 text-[11px] font-medium text-white backdrop-blur-md transition-all duration-200 shadow-[0_0_6px_2px_rgba(250,18,18,0.4)] hover:bg-black/90 hover:shadow-[0_0_12px_4px_rgba(250,18,18,0.5)] hover:scale-[1.02] sm:px-4 sm:py-2 sm:text-sm sm:shadow-[0_0_8px_3px_rgba(250,18,18,0.35)] sm:hover:shadow-[0_0_14px_5px_rgba(250,18,18,0.45)]"
           >
             Products
-          </Link>
-          <Link
-            href="/find-store"
-            className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-black/70 px-2 py-1 text-[11px] font-medium text-white backdrop-blur-md transition-all duration-200 shadow-[0_0_6px_2px_rgba(250,18,18,0.4)] hover:bg-black/90 hover:shadow-[0_0_12px_4px_rgba(250,18,18,0.5)] hover:scale-[1.02] sm:px-4 sm:py-2 sm:text-sm sm:shadow-[0_0_8px_3px_rgba(250,18,18,0.35)] sm:hover:shadow-[0_0_14px_5px_rgba(250,18,18,0.45)]"
-          >
-            Find a store
           </Link>
           <Link
             href="/products"
@@ -61,9 +44,9 @@ export default async function HomePage() {
           </Link>
         </div>
 
-        {/* Main hero content: headline, tagline, search, branch carousel */}
-        <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-3 pt-6 pb-6 text-center sm:px-4 sm:pt-28 sm:pb-10">
-          <div className="-mt-4 sm:mt-0">
+        {/* Main hero content: headline, tagline, search — centered in viewport */}
+        <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-3 py-8 text-center sm:px-4 sm:py-12">
+          <div className="-mt-2 sm:mt-0">
             <h1 className="font-brand text-5xl font-normal tracking-tight text-white opacity-0 animate-hero-fade-in-up sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl" style={{ letterSpacing: "0.03em" }}>
               {siteConfig.name}
             </h1>
@@ -77,40 +60,8 @@ export default async function HomePage() {
           >
             <HeroProductSearch />
           </div>
-
-          {/* Store location cards carousel */}
-          <HeroBranchCarousel branches={displayBranches} />
         </div>
       </section>
-
-      {/* Find a store — branch images */}
-      <AnimateOnScroll>
-      <section className="full-bleed py-16">
-        <Container>
-          <h2 className="text-2xl sm:text-3xl font-bold text-black text-center mb-8">Find a <span className="font-accent italic text-[1.1em]">store</span></h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {displayBranches.map((branch) => (
-              <Link
-                key={branch.id}
-                href="/find-store"
-                className="group relative aspect-[4/3] rounded-xl overflow-hidden border border-border shadow-sm transition hover:shadow-md"
-              >
-                <div className="absolute inset-0 bg-neutral-400" aria-hidden />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition" />
-                <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/70 to-transparent">
-                  <span className="text-sm font-semibold text-white">{branch.name}</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-          <div className="mt-6 text-center">
-            <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-              <Link href="/find-store">Find a store</Link>
-            </Button>
-          </div>
-        </Container>
-      </section>
-      </AnimateOnScroll>
 
       {/* Enjoy the freshest — floating product boxes, grey bg, scroll parallax */}
       <AnimateOnScroll>

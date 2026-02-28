@@ -1,7 +1,9 @@
 "use client";
 
+import { ShoppingCart } from "lucide-react";
 import { useCartStore } from "@/features/cart/store";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/hooks/use-toast";
 
 interface AddToCartButtonProps {
   branchId: string;
@@ -31,7 +33,7 @@ export function AddToCartButton({
       size="sm"
       disabled={disabled}
       className="rounded-md"
-      onClick={() =>
+      onClick={() => {
         addItem({
           branchId,
           variantId,
@@ -40,8 +42,17 @@ export function AddToCartButton({
           unitPrice,
           imageUrl,
           qty: 1,
-        })
-      }
+        });
+        toast({
+          title: (
+            <span className="flex items-center gap-2">
+              <ShoppingCart className="h-4 w-4 shrink-0 text-primary" />
+              Added to cart
+            </span>
+          ),
+          description: variantLabel ? `${productName} (${variantLabel})` : productName,
+        });
+      }}
     >
       Add to cart
     </Button>
